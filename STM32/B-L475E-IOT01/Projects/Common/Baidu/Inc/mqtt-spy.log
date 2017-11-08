@@ -1,0 +1,23 @@
+2017-09-07 14:15:18,316 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (/Users/huyun03/mqtt-spy/mqtt-spy-configuration.xml) = true
+2017-09-07 14:15:18,579 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from /Users/huyun03/mqtt-spy/mqtt-spy-configuration.xml
+2017-09-07 14:15:19,913 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (huyun_perf.mqtt.iot.gz.baidubce.com -> tcp://huyun_perf.mqtt.iot.gz.baidubce.com)
+2017-09-07 14:15:20,715 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in /Users/huyun03/mqtt-spy/
+2017-09-07 14:15:21,305 INFO  [mqtt-spy [ConnectionRunnable for huyun_perf]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun03_2211132fedf] to server [[tcp://huyun_perf.mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  4
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-09-07 14:15:22,067 INFO  [MQTT Call: huyun03_2211132fedf] [MqttConnectionResultHandler   ]  - huyun_perf connected
+2017-09-07 14:15:22,068 INFO  [JavaFX Application Thread     ] [MqttEventHandler              ]  - About to resubscribe to all requested topics
+2017-09-07 14:15:28,212 INFO  [JavaFX Application Thread     ] [NewSubscriptionController     ]  - Subscribing to #
+2017-09-07 14:15:28,214 INFO  [JavaFX Application Thread     ] [MqttSubscriptionViewManager   ]  - Creating subscription for #
+2017-09-07 14:15:28,318 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Subscribed to #
+2017-09-07 14:43:58,442 INFO  [JavaFX Application Thread     ] [BaseMqttConnection            ]  - Successfully unsubscribed from #
+2017-09-07 14:43:58,443 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun03_2211132fedf from [tcp://huyun_perf.mqtt.iot.gz.baidubce.com]

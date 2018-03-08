@@ -1,0 +1,976 @@
+2017-11-14 14:54:21,267 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml) = true
+2017-11-14 14:54:21,336 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml
+2017-11-14 14:54:28,054 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_6_0.xml?current=0.5.4-52
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:102)
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelController$2.run(ControlPanelController.java:203)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:94)
+	... 2 more
+2017-11-14 14:54:52,393 ERROR [JavaFX Application Thread     ] [SpyUncaughtExceptionHandler   ]  - Thread Thread[JavaFX Application Thread,5,main] failed with java.lang.NullPointerException
+java.lang.NullPointerException
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelItemController.setButtonProperties(ControlPanelItemController.java:106)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:157)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:1)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$354(GlassViewEventHandler.java:417)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$148(WinApplication.java:191)
+	at java.lang.Thread.run(Unknown Source)
+2017-11-14 14:54:53,227 ERROR [JavaFX Application Thread     ] [SpyUncaughtExceptionHandler   ]  - Thread Thread[JavaFX Application Thread,5,main] failed with java.lang.NullPointerException
+java.lang.NullPointerException
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelItemController.setButtonProperties(ControlPanelItemController.java:106)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:157)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:1)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$354(GlassViewEventHandler.java:417)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$148(WinApplication.java:191)
+	at java.lang.Thread.run(Unknown Source)
+2017-11-14 14:54:53,302 ERROR [JavaFX Application Thread     ] [SpyUncaughtExceptionHandler   ]  - Thread Thread[JavaFX Application Thread,5,main] failed with java.lang.NullPointerException
+java.lang.NullPointerException
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelItemController.setButtonProperties(ControlPanelItemController.java:106)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:157)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:1)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$354(GlassViewEventHandler.java:417)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$148(WinApplication.java:191)
+	at java.lang.Thread.run(Unknown Source)
+2017-11-14 14:54:54,165 ERROR [JavaFX Application Thread     ] [SpyUncaughtExceptionHandler   ]  - Thread Thread[JavaFX Application Thread,5,main] failed with java.lang.NullPointerException
+java.lang.NullPointerException
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelItemController.setButtonProperties(ControlPanelItemController.java:106)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:157)
+	at pl.baczkowicz.spy.ui.controlpanel.ControlPanelStatsUpdater$3.handle(ControlPanelStatsUpdater.java:1)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$354(GlassViewEventHandler.java:417)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$148(WinApplication.java:191)
+	at java.lang.Thread.run(Unknown Source)
+2017-11-14 14:55:03,928 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2017-11-14 14:56:41,884 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-14 14:56:41,908 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-14 14:56:42,232 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-14 14:56:42,808 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 14:56:43,001 WARN  [MQTT Con: huyun_perf          ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 14:58:28,821 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 14:58:28,828 WARN  [MQTT Con: huyun_perf          ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 14:58:30,594 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 14:58:30,600 WARN  [MQTT Con: huyun_perf          ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:00:01,184 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:01,570 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:02,220 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:06,190 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:06,600 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:07,220 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:07,414 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:07,600 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:08,350 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:08,992 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:09,162 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:10,122 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ true
+2017-11-14 15:00:10,840 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:11,182 INFO  [JavaFX Application Thread     ] [EditConnectionSubscriptionsController]  - New value = /sampleSubscription/ false
+2017-11-14 15:00:49,641 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-14 15:00:49,647 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-14 15:00:49,701 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-14 15:00:49,894 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-14 15:00:50,401 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:00:50,406 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:00:52,502 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:00:52,511 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:01:05,175 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:01:05,179 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:03:51,029 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:03:51,032 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:03:53,191 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:03:53,200 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:04:02,197 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:04:02,206 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:07:39,588 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf/admin from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-14 15:07:39,590 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-14 15:07:39,624 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-14 15:07:39,802 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-14 15:07:40,308 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:07:40,313 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:08:28,780 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf/admin from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-14 15:17:11,327 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml) = true
+2017-11-14 15:17:11,386 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml
+2017-11-14 15:17:18,085 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_6_0.xml?current=0.5.4-52
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:102)
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelController$2.run(ControlPanelController.java:203)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:94)
+	... 2 more
+2017-11-14 15:17:35,757 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-14 15:17:36,311 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-14 15:17:36,878 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:17:36,889 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:17:43,677 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:17:43,680 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:17:45,522 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf/admin from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-14 15:17:51,804 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml) = true
+2017-11-14 15:17:51,870 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml
+2017-11-14 15:17:58,558 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_6_0.xml?current=0.5.4-52
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:102)
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelController$2.run(ControlPanelController.java:203)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:94)
+	... 2 more
+2017-11-14 15:18:04,826 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-14 15:18:05,330 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-14 15:18:05,913 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-14 15:18:05,961 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-14 15:18:23,754 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf/admin from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-20 11:46:20,841 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml) = true
+2017-11-20 11:46:20,901 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml
+2017-11-20 11:46:46,743 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_6_0.xml?current=0.5.4-52
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:102)
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelController$2.run(ControlPanelController.java:203)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:94)
+	... 2 more
+2017-11-20 11:47:17,332 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-20 11:47:17,914 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-20 11:47:18,487 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 11:47:18,632 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-20 11:47:37,337 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2017-11-20 11:47:40,618 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf/admin from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-20 11:47:40,625 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-20 11:47:40,686 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (mqtt.iot.gz.baidubce.com -> tcp://mqtt.iot.gz.baidubce.com)
+2017-11-20 11:47:40,889 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-20 11:47:41,404 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [huyun_perf/admin] to server [[tcp://mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  huyun_perf/admin
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 11:47:41,407 WARN  [MQTT Con: huyun_perf/admin    ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-20 11:58:17,184 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting huyun_perf/admin from [tcp://mqtt.iot.gz.baidubce.com]
+2017-11-20 11:58:17,188 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-20 11:58:17,237 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (baidu-stm.mqtt.iot.gz.baidubce.com -> tcp://baidu-stm.mqtt.iot.gz.baidubce.com)
+2017-11-20 11:58:17,392 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-20 11:58:17,901 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [DeviceId-0zjiaea093] to server [[tcp://baidu-stm.mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  baidu-stm/iot-1
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 11:59:00,038 WARN  [MQTT Con: DeviceId-0zjiaea093 ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+Unable to connect to server (32103) - java.net.ConnectException: Connection timed out: connect
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:79)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	... 2 more
+2017-11-20 11:59:20,701 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [DeviceId-0zjiaea093] to server [[tcp://baidu-stm.mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  baidu-stm/iot-1
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 12:00:02,938 WARN  [MQTT Con: DeviceId-0zjiaea093 ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+Unable to connect to server (32103) - java.net.ConnectException: Connection timed out: connect
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:79)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	... 2 more
+2017-11-20 12:00:15,219 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting DeviceId-0zjiaea093 from [tcp://baidu-stm.mqtt.iot.gz.baidubce.com]
+2017-11-20 16:01:54,611 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml) = true
+2017-11-20 16:01:54,670 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml
+2017-11-20 16:02:01,441 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_6_0.xml?current=0.5.4-52
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:102)
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelController$2.run(ControlPanelController.java:203)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:94)
+	... 2 more
+2017-11-20 16:02:03,078 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (baidu-stm.mqtt.iot.gz.baidubce.com -> tcp://baidu-stm.mqtt.iot.gz.baidubce.com)
+2017-11-20 16:02:03,591 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-20 16:02:04,161 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [DeviceId-0zjiaea093] to server [[tcp://baidu-stm.mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  baidu-stm/iot-1
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 16:02:04,234 WARN  [MQTT Con: DeviceId-0zjiaea093 ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: baidu-stm.mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baidu-stm.mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-20 16:02:08,548 INFO  [JavaFX Application Thread     ] [EditConnectionsController     ]  - Selecting first item...
+2017-11-20 16:02:09,104 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting DeviceId-0zjiaea093 from [tcp://baidu-stm.mqtt.iot.gz.baidubce.com]
+2017-11-20 16:02:09,113 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-20 16:02:09,166 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (baidu-stm.mqtt.iot.gz.baidubce.com -> tcp://baidu-stm.mqtt.iot.gz.baidubce.com)
+2017-11-20 16:02:09,437 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-20 16:02:09,945 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [DeviceId-0zjiaea093] to server [[tcp://baidu-stm.mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  baidu-stm/iot-1
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 16:02:09,947 WARN  [MQTT Con: DeviceId-0zjiaea093 ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: baidu-stm.mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baidu-stm.mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-20 16:02:14,889 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting DeviceId-0zjiaea093 from [tcp://baidu-stm.mqtt.iot.gz.baidubce.com]
+2017-11-20 16:03:58,822 INFO  [JavaFX Application Thread     ] [EditMqttConnectionController  ]  - Opening connection baidu
+2017-11-20 16:03:58,854 INFO  [JavaFX Application Thread     ] [MqttConfigurationUtils        ]  - Auto-complete for server URI (baidu-stm.mqtt.iot.gz.baidubce.com -> tcp://baidu-stm.mqtt.iot.gz.baidubce.com)
+2017-11-20 16:04:00,081 ERROR [JavaFX Application Thread     ] [FileUtils                     ]  - No files in C:\Users\david pan\mqtt-spy\
+2017-11-20 16:04:00,605 INFO  [mqtt-spy [ConnectionRunnable for baidu]] [MqttAsyncConnectionRunnable   ]  - Connecting client ID [DeviceId_160242667] to server [[tcp://baidu-stm.mqtt.iot.gz.baidubce.com]]; options = 
+============== Connection options ==============
+CleanSession                :  true
+SocketFactory               :  null
+MqttVersion                 :  0
+KeepAliveInterval           :  60
+ConTimeout                  :  30
+UserName                    :  baidu-stm/iot-1
+SSLProperties               :  null
+WillDestination             :  null
+==========================================
+
+2017-11-20 16:04:00,742 WARN  [MQTT Con: DeviceId_160242667  ] [MqttConnectionResultHandler   ]  - Connecting to baidu failed
+MqttException (0) - java.net.UnknownHostException: baidu-stm.mqtt.iot.gz.baidubce.com
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:38)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:664)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baidu-stm.mqtt.iot.gz.baidubce.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.eclipse.paho.client.mqttv3.internal.TCPNetworkModule.start(TCPNetworkModule.java:70)
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms$ConnectBG.run(ClientComms.java:650)
+	... 1 more
+2017-11-20 16:04:09,229 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting DeviceId_160242667 from [tcp://baidu-stm.mqtt.iot.gz.baidubce.com]
+2017-11-20 16:04:10,637 INFO  [JavaFX Application Thread     ] [MqttConnectionWithReconnection]  - Disconnecting DeviceId_160242667 from [tcp://baidu-stm.mqtt.iot.gz.baidubce.com]
+2017-11-20 16:34:07,387 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Default configuration file present (C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml) = true
+2017-11-20 16:34:07,468 INFO  [JavaFX Application Thread     ] [MqttViewManager               ]  - Loading configuration file from C:\Users\david pan\mqtt-spy\mqtt-spy-configuration.xml
+2017-11-20 16:34:14,057 ERROR [JavaFX Application Thread     ] [ControlPanelController        ]  - Cannot retrieve version info
+pl.baczkowicz.spy.exceptions.XMLException: Cannot read version info from http://baczkowicz.pl/mqtt-spy/version_0_6_0.xml?current=0.5.4-52
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:102)
+	at pl.baczkowicz.spy.ui.controllers.ControlPanelController$2.run(ControlPanelController.java:203)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.UnknownHostException: baczkowicz.pl
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at pl.baczkowicz.spy.ui.versions.VersionManager.loadVersions(VersionManager.java:94)
+	... 2 more

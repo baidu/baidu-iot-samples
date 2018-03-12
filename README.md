@@ -7,5 +7,6 @@
   We have adapted the following hardware
   - ST
       - B-L475E-IOT01
+      - 32L496GDISCOVERY
      
 目前已适配硬件的例程和教程有ST的B-L475E-IOT01物联网开发套件：）

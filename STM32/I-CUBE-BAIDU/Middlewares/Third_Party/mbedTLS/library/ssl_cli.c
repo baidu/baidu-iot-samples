@@ -1528,7 +1528,7 @@ static int ssl_parse_server_hello( mbedtls_ssl_context *ssl )
     mbedtls_ssl_read_version( &ssl->major_ver, &ssl->minor_ver,
                       ssl->conf->transport, buf + 0 );
 
-    if( ssl->major_ver < ssl->conf->min_major_ver ||
+    /*if( ssl->major_ver < ssl->conf->min_major_ver ||
         ssl->minor_ver < ssl->conf->min_minor_ver ||
         ssl->major_ver > ssl->conf->max_major_ver ||
         ssl->minor_ver > ssl->conf->max_minor_ver )
@@ -1543,7 +1543,7 @@ static int ssl_parse_server_hello( mbedtls_ssl_context *ssl )
                                      MBEDTLS_SSL_ALERT_MSG_PROTOCOL_VERSION );
 
         return( MBEDTLS_ERR_SSL_BAD_HS_PROTOCOL_VERSION );
-    }
+    }*/
 
 #if defined(MBEDTLS_DEBUG_C)
     t = ( (uint32_t) buf[2] << 24 )

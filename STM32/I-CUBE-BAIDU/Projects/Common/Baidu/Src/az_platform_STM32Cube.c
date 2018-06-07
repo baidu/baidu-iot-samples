@@ -27,7 +27,7 @@ extern const IO_INTERFACE_DESCRIPTION* tlsio_mbedtls_STM32Cube_get_interface_des
 
 const IO_INTERFACE_DESCRIPTION* platform_get_default_tlsio(void)
 {
-  return tlsio_mbedtls_get_interface_description();
+  return tlsio_mbedtls_STM32Cube_get_interface_description();
 }
 
 

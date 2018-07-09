@@ -2,7 +2,7 @@
 
   This repository is for iot-edge-sdk samples.
 
-该project包含乐鑫ESP8266和ST公司的STM32系列芯片适配到百度云IoT平台的样例。
+该project包含乐鑫ESP8266，乐鑫ESP32和ST公司的STM32系列芯片适配到百度云IoT平台的样例。
 
   IoT Edge SDK包含了物接入(IoT Hub)的C语言客户端、序列化和反序列化、设备管理、协议解析等功能组件，涵盖了实现设备上云时在断线缓存、在线检测、设备管理、数据安全传输等场景
   

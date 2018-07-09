@@ -30,8 +30,10 @@ ESP-IDF全称Espressif IoT Development Framework是乐鑫基于ESP32推出的新
 ```
 
 ### 设置环境变量
-    IDF_PATH: esp32 sdk 目录，在这里就是: IDF_PATH=$PROJ_DIR/esp32-idf
-    PATH: 加入toolchain路径
+```bash
+    export IDF_PATH=$PROJ_DIR/esp32-idf # IDF_PATH: esp32 sdk 目录
+    export PATH=/path/to/your/toolchain/bin/:$PATH # PATH: 加入toolchain路径: 
+```
 
 ### 编译测试 hello_world
 ```bash
@@ -385,5 +387,7 @@ make menuconfig
 - 2018-7-8                1.0.4
     - 修改所引用开源库的链接
     - 文档润色。
+- 2018-7-9                1.0.5
+    - 修改设置环境变量命令
 
 

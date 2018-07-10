@@ -191,18 +191,16 @@ OtaMqHandler* get_ota_mq_handler()
 ```
 
 # OTA demo 代码流程详细分析
-与 mqtt server 成功tls握手之后，成功连接到服务器。分别订阅`ota_for_test_profile`和`ota_for_test_bin`这两个主题，前者用来接收升级通知，后者用来接收ota数据。代码如下：
+与 mqtt server 成功tls握手之后，成功连接到服务器。首先订阅`ota_for_test_profile`这个主题，用来接收升级通知。代码如下：
 ```c
     ...
-    SUBSCRIBE_PAYLOAD subscribe[4];
+    SUBSCRIBE_PAYLOAD subscribe[3];
     subscribe[0].subscribeTopic = TOPIC_NAME_A;
     subscribe[0].qosReturn = DELIVER_AT_MOST_ONCE;
     subscribe[1].subscribeTopic = TOPIC_NAME_B;
     subscribe[1].qosReturn = DELIVER_AT_MOST_ONCE;
     subscribe[2].subscribeTopic = "ota_for_test_profile";
-    subscribe[2].qosReturn = DELIVER_EXACTLY_ONCE; // 有且仅有一次
-    subscribe[3].subscribeTopic = "ota_for_test_bin";
-    subscribe[3].qosReturn = DELIVER_EXACTLY_ONCE; // 有且仅有一次
+    subscribe[2].qosReturn = DELIVER_AT_LEAST_ONCE; //至少一次
 
     int flag = 0;
     subscribe_mqtt_topics(clientHandle, subscribe, sizeof(subscribe)/sizeof(SUBSCRIBE_PAYLOAD), processSubAckFunction, &flag);
@@ -219,7 +217,19 @@ void on_recv_callback(MQTT_MESSAGE_HANDLE msgHandle, void* context)
     ota_upgrade_process(msgHandle, context);
 }
 ```
-ota_upgrade_process 包含了ota升级的主逻辑。
+ota_upgrade_process 包含了ota升级的主逻辑。原理如下：首先在 ota profile 中获取ota bin的大小，版本以及md5 checksum 值。之后，便按照顺序分片接收 ota bin的每一片。
+例：  
+假如ota bin一共分成3片发送,客户端订阅的分片 topic 格式为 `ota_for_test_bin/[version]/[idx]`，中间为当前版本号，最后是当前的分片序号，流程如下：
+- 客户端 sub topic: `ota_for_test_bin/12.34.56/0`
+- 客户端接收到第0片，写入flash
+- 客户端 unsub topic: `"`ota_for_test_bin/12.34.56/0`"`
+- 客户端 sub topic: `ota_for_test_bin/12.34.56/1`
+- 客户端接收到第1片，写入flash
+- 客户端 unsub topic: `ota_for_test_bin/12.34.56/1`
+- 客户端 sub topic: `ota_for_test_bin/12.34.56/2`
+- 客户端接收到第2片，写入flash
+- 客户端 unsub topic: `ota_for_test_bin/12.34.56/2`
+- 接收完毕，校验。
 ```c
 static int fw_update_check_version(const char * ver)
 {
@@ -302,9 +312,18 @@ static void hex_to_decimal(const char *hex_string, unsigned char *arr, size_t ar
     printf("\n");
 }
 
-void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
+static char *get_next_ota_piece_topic(int cnt, char *ver_str)
+{
+    static char topic[64];
+    
+    snprintf(topic, sizeof(topic), "%s/%s/%d", TOPIC_OTA_BIN, ver_str, cnt);
+    return  topic;
+}
+
+static void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
 {
     const APP_PAYLOAD* appMsg = mqttmessage_getApplicationMsg(msgHandle);
+    IOTHUB_MQTT_CLIENT_HANDLE clientHandle = (IOTHUB_MQTT_CLIENT_HANDLE)context;
     const char *topic_name;
     const char *ver_str, *md5_str;
     unsigned char *data;
@@ -314,10 +333,15 @@ void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
     JSON_Object* root;
     static int remain_len, total_len;
     static unsigned char md5_fw[16];
+    static char ver_fw[16];
     unsigned char md5_cur[16];
     static OtaMqHandler* ota_mq_handler =  NULL;
     static void *ota_ctx = NULL;
     static mbedtls_md5_context md5_ctx;
+    int flag = 0;
+    static int current_piece_cnt = 0;
+    char *unsubscribe;
+    SUBSCRIBE_PAYLOAD subscribe[1];
     
 
     topic_name = mqttmessage_getTopicName(msgHandle); //获取 topic 名字
@@ -327,7 +351,7 @@ void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
     if (!topic_name) {
         return;
     }
-    if (!strcmp(topic_name, "ota_for_test_profile")) { //如果收到 OTA 升级通知
+    if (!strcmp(topic_name, TOPIC_OTA_PROFILE)) { //如果收到 OTA 升级通知
         if (ota_ctx) { // 如果当前已经处于ota升级中，直接返回
             printf("aready in ota, pass profile\n");
             return;
@@ -363,11 +387,13 @@ void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
             return;
         }
         
+        strncpy(ver_fw, ver_str, sizeof(ver_fw));
         if (!fw_update_check_version(ver_str)) { // 检查固件的版本号是否比当前版本号高
             printf("fw_update_check_version == 0 don't update!\n");
+            STRING_delete(profile_str);
+            json_value_free(profile_jv);
             return;
         }
-
         hex_to_decimal(md5_str, md5_fw, sizeof(md5_fw)); // 将profile中的md5sum 16进制字符串转化成数组
 
         //prepare for ota
@@ -383,18 +409,36 @@ void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
             printf("ota_mq_begin() error\n");
             return;
         }
-        mbedtls_md5_init(&md5_ctx);
+        mbedtls_md5_init(&md5_ctx); //初始化 md5 ctx
         mbedtls_md5_starts(&md5_ctx);
 
-    } else if (!strcmp(topic_name, "ota_for_test_bin")) {
+        //sub 接收 ota bin数据的topic, topic格式：ota_for_test_bin/[version]/[idx]
+        subscribe[0].subscribeTopic = get_next_ota_piece_topic(current_piece_cnt, ver_fw);
+        subscribe[0].qosReturn = DELIVER_AT_LEAST_ONCE; //至少一次
+        subscribe_mqtt_topics(clientHandle, subscribe, sizeof(subscribe)/sizeof(SUBSCRIBE_PAYLOAD), processSubAckFunction, &flag);
+        printf("sub piece 0 topic: %s\n", subscribe[0].subscribeTopic);
+
+    } else if (!strncmp(topic_name, TOPIC_OTA_BIN, strlen(TOPIC_OTA_BIN))) {
         if (!ota_mq_handler || !ota_ctx) { //还没收到 ota 升级通知，忽略所有的ota数据
             printf("no ota profile, pass bin data\n");
             return;
         }
+        
+        //检查 piece index是否吻合
+        if (strcmp(topic_name, get_next_ota_piece_topic(current_piece_cnt, ver_fw))) {
+            printf("topic not match\n");
+            return;
+        }
+        //unsub 当前片的topic
+        unsubscribe = get_next_ota_piece_topic(current_piece_cnt, ver_fw);
+        unsubscribe_mqtt_topics(clientHandle, (const char **)(&unsubscribe), 1);
+        printf("unsub last piece topic: %s\n", unsubscribe);
+
         len = (remain_len >= data_len) ? data_len : remain_len;
         if (ota_mq_handler->ota_mq_write_data(ota_ctx, data, len) < 0) {//写 ota 二进制数据到 ota partition
             printf("ota_mq_write_data() error\n");
             ota_ctx = NULL;
+            current_piece_cnt = 0;
             mbedtls_md5_free(&md5_ctx);
             return;
         }
@@ -419,12 +463,20 @@ void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
             }
 
             ota_ctx = NULL;
+            current_piece_cnt = 0;
+        } else {
+            //sub下一片的topic
+            current_piece_cnt++;
+            subscribe[0].subscribeTopic = get_next_ota_piece_topic(current_piece_cnt, ver_fw);
+            subscribe[0].qosReturn = DELIVER_AT_LEAST_ONCE; //至少一次
+            subscribe_mqtt_topics(clientHandle, subscribe, sizeof(subscribe)/sizeof(SUBSCRIBE_PAYLOAD), processSubAckFunction, &flag);
+            printf("sub next piece topic: %s\n", subscribe[0].subscribeTopic);
         }
-        
     } else {
         //bypass
     }
 }
+
 ```
 
 # OTA demo 测试脚本
@@ -433,8 +485,8 @@ void ota_upgrade_process(MQTT_MESSAGE_HANDLE msgHandle, void* context)
 ```bash
 #!/bin/bash
 
-SLEEP_TIME=0.05  # send interval: 0.05s
-PIECE_SIZE=10k   # packet size: 10K
+SLEEP_TIME=1  # send interval: 1s
+PIECE_SIZE=20k   # packet size: 20k
 
 
 echo "prepare profile and pieces bins..."
@@ -447,7 +499,8 @@ cat ota_profile
 split -a 4  -b ${PIECE_SIZE}  $BIN_FILE  pieces/spl_
 
 echo "sending profile..."
-# 修改服务器域名以及用户名密码等等信息。这些信息的获取，可以登陆 `https://cloud.baidu.com` 创建百度云物接入实例，从而生成对应的服务器账号密码等信息。参考：`https://cloud.baidu.com/doc/IOT/GettingStarted.html`
+# 修改服务器域名以及用户名密码等等信息。这些信息的获取，可以登陆 `https://cloud.baidu.com` 创建百度云物接入实例，  
+# 从而生成对应的服务器账号密码等信息。参考：`https://cloud.baidu.com/doc/IOT/GettingStarted.html`
 mosquitto_pub -h "xxxxxx.mqtt.iot.xx.baidubce.com" -p 1883 \
     -t "ota_for_test_profile" \
     -f ota_profile \
@@ -457,14 +510,15 @@ mosquitto_pub -h "xxxxxx.mqtt.iot.xx.baidubce.com" -p 1883 \
 
 read -p "Press enter to start sending pieces..."
 
-
+cnt=0
 for filename in pieces/spl*; do
     echo "processing ${filename}"
-    mosquitto_pub -h "xxxxxx.mqtt.iot.xx.baidubce.com" -p 1883 -t "ota_for_test_bin"  -u "xxxxxx/xxxx" \
+    mosquitto_pub -h "xxxxxx.mqtt.iot.xx.baidubce.com" -p 1883 -t "ota_for_test_bin/12.34.57/$cnt"  -u "xxxxxx/xxxx" \
                     -P "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -d \
                     -i "xxxxxxxxxxxxxxxxxxxxxxxxxx" \
                     -f ${filename}
     sleep ${SLEEP_TIME}
+    cnt=$(expr $cnt + 1)
 done
 ```
 
@@ -474,18 +528,18 @@ done
     TODO:
         1. 版本号未判断
         2. checksum未做
-        3. qos 应该是 有且仅有一次
-        4. 完善代码
+        3. 完善代码
 - 2018-6-28                 1.0.2
     - 重新优化 ota 部分代码，抽象出设备相关层操作，统一OTA接口
     - TODO:
         1. 版本号未判断
         2. checksum未做
-        3. qos 应该是 有且仅有一次
-        4. 完善代码
+        3. 完善代码
 
 - 2018-7-1                  1.0.3
     - 1. fix all todo
 - 2018-7-9                  1.0.4
     - 添加 ota 测试脚本
+- 2018-7-10                 1.0.5
+    - 优化 ota demo 示例代码
 ```

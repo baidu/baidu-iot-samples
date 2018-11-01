@@ -3,7 +3,13 @@
 
 #include "azure_c_shared_utility/platform.h"
 #include "sntp.h"
+
+#ifdef USE_OPENSSL
 #include "tlsio_pal.h"
+#elif defined (USE_MBED_TLS)
+#include "tlsio_mbedtls.h"
+#endif
+
 #include "azure_c_shared_utility/xlogging.h"
 
 static const char* const ntpServer = "pool.ntp.org";
@@ -37,12 +43,25 @@ int platform_init(void)
 /* Codes_SRS_PLATFORM_OPENSSL_COMPACT_30_008: [ The platform_get_default_tlsio shall return a set of tlsio functions provided by the OpenSSL micro tlsio implementation. ] */
 const IO_INTERFACE_DESCRIPTION* platform_get_default_tlsio(void)
 {
+#ifdef USE_OPENSSL
     return tlsio_pal_get_interface_description();
+#elif defined (USE_MBED_TLS)
+    return tlsio_mbedtls_get_interface_description();
+#else
+    LogError("no tlsio interface!");
+    return NULL;
+#endif
 }
 
 STRING_HANDLE platform_get_platform_info(void)
 {
+#ifdef USE_OPENSSL
     return STRING_construct("(openssl_compact)");
+#elif defined (USE_MBED_TLS)
+    return STRING_construct("(mbedtls)");
+#else
+    return  NULL;
+#endif
 }
 
 /* Codes_SRS_PLATFORM_OPENSSL_COMPACT_30_006: [ The platform_deinit shall deinitialize the sntp client. ] */

@@ -276,8 +276,10 @@ static CONCRETE_IO_HANDLE tlsio_openssl_create(void* io_create_parameters)
                 result->hostname = NULL;
                 result->dns = NULL;
                 result->pending_transmission_list = NULL;
+
                 // No options are currently supported
-                tlsio_options_initialize(&result->options, TLSIO_OPTION_BIT_NONE);
+                tlsio_options_initialize(&result->options, TLSIO_OPTION_BIT_TRUSTED_CERTS);
+
                 /* Codes_SRS_TLSIO_30_016: [ tlsio_create shall make a copy of the hostname member of io_create_parameters to allow deletion of hostname immediately after the call. ]*/
                 ms_result = mallocAndStrcpy_s(&result->hostname, tls_io_config->hostname);
                 if (ms_result != 0)
@@ -470,6 +472,21 @@ static void dowork_read(TLS_IO_INSTANCE* tls_io_instance)
     }
 }
 
+static int ssl_ctx_load_verify_buffer(SSL_CTX *ctx, const unsigned char* buffer, long len)
+{
+    if (!ctx || !buffer) {
+        return -1;
+    }
+
+    X509* cacrt = d2i_X509(NULL, buffer, len);
+
+    if (cacrt) {
+        SSL_CTX_add_client_CA(ctx, cacrt);
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 static int create_ssl(TLS_IO_INSTANCE* tls_io_instance)
 {
@@ -508,6 +525,19 @@ static int create_ssl(TLS_IO_INSTANCE* tls_io_instance)
             }
         }
     }
+
+#if 1
+        const char* trusted_certs = tls_io_instance->options.trusted_certs;
+        if (trusted_certs && trusted_certs[0])
+        {
+            //add baidu cert
+            printf("load ca crt ......");
+            ret = ssl_ctx_load_verify_buffer(tls_io_instance->ssl_context, (const unsigned char*)trusted_certs, strlen(trusted_certs));
+            printf("set verify mode verify peer\n");
+            SSL_CTX_set_verify(tls_io_instance->ssl_context, SSL_VERIFY_PEER, NULL); //SSL_VERIFY_PEER SSL_VERIFY_NONE
+
+        }
+#endif
 
     return result;
 }
@@ -642,7 +672,8 @@ static void dowork_poll_open_ssl(TLS_IO_INSTANCE* tls_io_instance)
     // depends on the underlying BIO. When using a non - blocking 
     // socket, nothing is to be done, but select() can be used to 
     // check for the required condition."
-
+    uint32_t esp_get_free_heap_size(void);
+    printf("************************* c heap size:%d\r\n", esp_get_free_heap_size());
     int connect_result = SSL_connect(tls_io_instance->ssl);
 
     // The following note applies to the Espressif ESP32 implementation

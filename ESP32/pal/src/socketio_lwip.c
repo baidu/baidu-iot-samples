@@ -41,9 +41,6 @@
 #include "azure_c_shared_utility/shared_util_options.h"
 #include "azure_c_shared_utility/xlogging.h"
 #include "azure_c_shared_utility/const_defines.h"
-//#include <sys/ioctl.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
 #define SOCKET_SUCCESS                 0
 #define INVALID_SOCKET                 -1
@@ -356,6 +353,7 @@ int socketio_open(CONCRETE_IO_HANDLE socket_io, ON_IO_OPEN_COMPLETE on_io_open_c
     int retval = -1;
     int select_errno = 0;
 
+    printf("==> socketio_open\n");
     SOCKET_IO_INSTANCE* socket_io_instance = (SOCKET_IO_INSTANCE*)socket_io;
     if (socket_io == NULL)
     {
@@ -482,6 +480,7 @@ int socketio_open(CONCRETE_IO_HANDLE socket_io, ON_IO_OPEN_COMPLETE on_io_open_c
                             }
                             if (err == 0)
                             {
+                                printf("connect to server success!\n");
                                 socket_io_instance->on_bytes_received = on_bytes_received;
                                 socket_io_instance->on_bytes_received_context = on_bytes_received_context;
 
@@ -700,6 +699,7 @@ void socketio_dowork(CONCRETE_IO_HANDLE socket_io)
                 received = recv(socket_io_instance->socket, socket_io_instance->recv_bytes, RECEIVE_BYTES_VALUE, 0);
                 if (received > 0)
                 {
+                    printf("<== recv data heap:%d, recvlen:%d\n", esp_get_free_heap_size(), received);
                     if (socket_io_instance->on_bytes_received != NULL)
                     {
                         /* Explicitly ignoring here the result of the callback */
@@ -708,11 +708,13 @@ void socketio_dowork(CONCRETE_IO_HANDLE socket_io)
                 }
                 else if (received == 0)
                 {
+                    printf("peer close connection!\n");
                     // Do not log error here due to this is probably the socket being closed on the other end
                     indicate_error(socket_io_instance);
                 }
                 else if (received < 0 && errno != EAGAIN)
                 {
+                    printf("recv error!\n");
                     LogError("Socketio_Failure: Receiving data from endpoint: errno=%d.", errno);
                     indicate_error(socket_io_instance);
                 }

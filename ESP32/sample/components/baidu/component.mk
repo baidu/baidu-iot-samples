@@ -4,7 +4,7 @@
 
 # Component configuration in preprocessor defines
 CFLAGS += -DUSE_OPENSSL
-EDGE_SDK_PATH = ../../../iot-edge-c-sdk
+EDGE_SDK_PATH = ../../../../../iot-edge-c-sdk
 ESP_PAL_PATH = ../../../pal
 
 COMPONENT_ADD_INCLUDEDIRS :=  \

@@ -22,20 +22,11 @@
 #include <azure_c_shared_utility/threadapi.h>
 #include "iothub_mqtt_client.h"
 #include "iothub_mqtt_client_sample.h"
-
-#include "esp_system.h"
-#include "esp_wifi.h"
-#include "esp_event_loop.h"
-#include "esp_log.h"
-#include "esp_ota_ops.h"
-#include "esp_partition.h"
-
-#include "nvs.h"
-#include "nvs_flash.h"
 #include "parson.h"
-#include "ota_updater.h"
 
-#define CURRENT_VER "12.34.57"
+#include "ota_update_engine.h"
+
+#define CURRENT_VER "12.34.58"
 
 // Please set the mqtt client data and security which are shown as follow.
 // The endpoint address, witch is like "xxxxxx.mqtt.iot.xx.baidubce.com".
@@ -45,10 +36,13 @@
 #define         USERNAME                    "xxxxxx/xxxx"
 
 // The key (password) of mqtt client.
-#define         PASSWORD                    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#define         PASSWORD                    "xxxxxxxxxxxxxxxxxxxxxx"
 
 // The connection type is TCP, TLS or MUTUAL_TLS.
 #define         CONNECTION_TYPE              "TLS"
+
+// $puid
+#define         DEVICE              "xxxxx"
 
 //The following certificate and key should be set if CONNECTION_TYPE set to 'MUTUAL_TLS'.
 static char * client_cert = "-----BEGIN CERTIFICATE-----\r\n"
@@ -59,12 +53,33 @@ static char * client_key = "-----BEGIN RSA PRIVATE KEY-----\r\n"
         "your client key\r\n"
         "-----END RSA PRIVATE KEY-----\r\n";
 
+
+static const char *client_ota_cert = "-----BEGIN CERTIFICATE-----\r\n"
+                            "MIIDejCCAmICCQC+9aCa0neVljANBgkqhkiG9w0BAQsFADB/MQswCQYDVQQGEwJD\r\n"
+                            "TjERMA8GA1UECAwIc2hhbmdoYWkxETAPBgNVBAcMCHNoYW5naGFpMQwwCgYDVQQK\r\n"
+                            "DANhYWExDDAKBgNVBAsMA2JiYjEQMA4GA1UEAwwHY2NjLmNvbTEcMBoGCSqGSIb3\r\n"
+                            "DQEJARYNY2NjQGJhaWR1LmNvbTAeFw0xODEwMjkwNzI1MDNaFw0xOTEwMjkwNzI1\r\n"
+                            "MDNaMH8xCzAJBgNVBAYTAkNOMREwDwYDVQQIDAhzaGFuZ2hhaTERMA8GA1UEBwwI\r\n"
+                            "c2hhbmdoYWkxDDAKBgNVBAoMA2FhYTEMMAoGA1UECwwDYmJiMRAwDgYDVQQDDAdj\r\n"
+                            "Y2MuY29tMRwwGgYJKoZIhvcNAQkBFg1jY2NAYmFpZHUuY29tMIIBIjANBgkqhkiG\r\n"
+                            "9w0BAQEFAAOCAQ8AMIIBCgKCAQEA+NN8s4UcunTywnSzNURVV1BslZPMWjERGbbe\r\n"
+                            "gF5fTZhFgLgKF96QQvWe88v9+VcI38T1jE0TDOfHRKxg2f3kGhGvvTbSpfEaDJb3\r\n"
+                            "bbAGbqn2ie7FNXh4h2JXWDmLOl4OYEGcvDZlXPAQrGznWMb0r3WHXaIDs3akTimT\r\n"
+                            "QEM3xSaP0B90PwpmYY/1OEMnL09C0TOxQ64aguLz6hJOGpr+nR/5w6cpSEtFUH6K\r\n"
+                            "emjEsxS5CQcP8Mq5xiLTxy0VyjwVFOM+y+9yi3M6AcN/XhG/mvD2q8gd0zAiFghR\r\n"
+                            "rZJp5eCTH6oBwP7/Izofh5DSR0OidjNZ6Z4ih4IaC/xS49Q6iwIDAQABMA0GCSqG\r\n"
+                            "SIb3DQEBCwUAA4IBAQBs06nY6onfPXg1gU2/7VIiqD7VOxVogYPwySGqWo84VyXi\r\n"
+                            "DhVr056X6LGMPJUtMVRZqFYJrWlxR9sZ7icFadNxMsJpJf/ZYXZVCM7wvp443Jm+\r\n"
+                            "LTcTyC6oqalgeMAEUBLC+iYxa4yb0uT0IVRuMQe/RlfR3wKI8ML2FhxThS0ZiPKS\r\n"
+                            "I/vtMrdGHKulGJDk+Z+lTjHVjHFgDsUeQfr/dCWtPyRV1I6M7dYsDd2zIcAIrNX4\r\n"
+                            "qU3selIIpH5WKlEi8uluTxB8Wy3vW3STHvFtn/PkWkW9utSkJ3uSHWqG0T1lGRtI\r\n"
+                            "0OcE5PA4o5hl5jkGYyhq10L3IpOahhTBUUVvh3BQ\r\n"
+                            "-----END CERTIFICATE-----\r\n";
+
 static const char* TOPIC_NAME_A      = "msgA";
 static const char* TOPIC_NAME_B      = "msgB";
-static int expect_piece = 0;
 
-static OtaUpdater apt;
-static int recved_profile = 0;
+static OtaUpdater *apt;
 
 static const char* QosToString(QOS_VALUE qosValue)
 {
@@ -79,72 +94,14 @@ static const char* QosToString(QOS_VALUE qosValue)
 }
 
 
-void ota_updater_cb(OtaUpdater* apt, OtaUpdaterCbSt st, void* userData)
-{
-    switch (st) {
-    case OTA_UPDATER_CB_ERR:
-        printf("OTA_UPDATER_CB_ERR!\n");
-        break;
-	case OTA_UPDATER_CB_FW_ALREADY_NEW:
-        printf("OTA_UPDATER_CB_FW_ALREADY_NEW\n");
-        break;
-    case OTA_UPDATER_CB_CHECKSUM_ERR:
-        printf("OTA_UPDATER_CB_CHECKSUM_ERR\n");
-        break;
-	case OTA_UPDATER_FINISH:
-        printf("OTA_UPDATER_FINISH\n");
-        ota_updater_end(apt, true);
-        return;
-    default:
-        break;
-    }
-
-    expect_piece = 0;
-    recved_profile = 0;
-    ota_updater_end(apt, false);
-}
-
-static int prepare_ota(const char *ver_str, size_t total_len, const char *md5_str)
-{
-    //初始化  OtaUpdater
-    if (ota_updater_init(&apt, CURRENT_VER, ota_updater_cb, &apt) < 0) {
-        printf("ota_updater_init() fail\n");
-        goto ERR_OUT;
-    }
-
-    if (ota_updater_set_fw_version(&apt, ver_str) < 0) {
-        printf("ota_updater_set_fw_version() fail\n");
-        goto ERR_DINIT_OTA;
-    }
-
-    if (ota_updater_set_fw_size(&apt, total_len) < 0) {
-        printf("ota_updater_set_fw_size() fail\n");
-        goto ERR_DINIT_OTA;
-    }
-
-    if (ota_updater_set_md5_chksum(&apt, md5_str) < 0) {
-        printf("ota_updater_set_md5_chksum() fail\n");
-        goto ERR_DINIT_OTA;
-    }
-
-    return 0;
-ERR_DINIT_OTA:
-    ota_updater_end(&apt, false);
-ERR_OUT:
-    return -1;
-}
 
 void on_recv_callback(MQTT_MESSAGE_HANDLE msgHandle, void* context)
 {
-    const char *topic_name, *ver_str, *md5_str;
+    const char *topic_name;
     const APP_PAYLOAD* appMsg = mqttmessage_getApplicationMsg(msgHandle);
     IOTHUB_MQTT_CLIENT_HANDLE clientHandle = (IOTHUB_MQTT_CLIENT_HANDLE)context;
-    STRING_HANDLE profile_str;
-    JSON_Value* profile_jv;
-    JSON_Object* root;
     unsigned char *data;
     size_t data_len;
-    int total_len, index;
 
     topic_name = mqttmessage_getTopicName(msgHandle); //获取 topic 名字
     data = appMsg->message;         //获取 数据
@@ -165,86 +122,12 @@ void on_recv_callback(MQTT_MESSAGE_HANDLE msgHandle, void* context)
     {
         iothub_mqtt_disconnect(clientHandle);
     }
-            
-    if (!strcmp(topic_name, "ota_for_test_profile")) { //如果收到 OTA 升级通知
-        //test
-        printf("current heap size: %d\n", system_get_free_heap_size());
-        if (recved_profile) { // 如果当前已经处于ota升级中，直接返回
-            printf("aready in ota, pass profile\n");
-            return;
-        }
-        if (!(profile_str = STRING_from_byte_array(data, data_len))) {
-            printf("STRING_from_byte_array() error\n");
-            return ;
-        }
-        // {"version":"1.2.3", "size":701342, "checksum": "9c7402e9c1968cac76566f9619b08068"}
-        if (!(profile_jv = json_parse_string(STRING_c_str(profile_str)))) { //解析 json 字符串
-            printf("json_parse_string() error\n");
-            STRING_delete(profile_str);
-            return;
-        }
-        root = json_object(profile_jv);
-        if (!root) {
-            printf("json_object() error\n");
-            STRING_delete(profile_str);
-            json_value_free(profile_jv);
-            return;
-        }
 
-        printf("get profile: %s, %lf, %s\n", json_object_get_string(root, "version"),
-            json_object_get_number(root, "size"), json_object_get_string(root, "checksum"));
-        // 分别得到固件的“版本号” “大小” “checksum”
-        total_len = json_object_get_number(root, "size");
-        ver_str = json_object_get_string(root, "version");
-        md5_str = json_object_get_string(root, "checksum");
 
-        if (!total_len || !ver_str) {
-            STRING_delete(profile_str);
-            json_value_free(profile_jv);
-            return;
-        }
-        
+    // first filter the ota data flow
+    ota_updater_data_filter(apt, topic_name, data, data_len);
 
-        if (prepare_ota(ver_str, total_len, md5_str) < 0) {
-            printf("prepare_ota() fail\n");
-            STRING_delete(profile_str);
-            json_value_free(profile_jv);
-            return;
-        }
-
-        STRING_delete(profile_str);
-        json_value_free(profile_jv);
-
-        recved_profile = 1;
-        expect_piece = 0;
-    } else if (!strcmp(topic_name, "ota_for_test_bin")) {
-        if (!recved_profile) { //还没收到 ota 升级通知，忽略所有的ota数据
-            printf("no ota profile, pass bin data\n");
-            return;
-        }
-        // 获取开始的4字节数据，代表第几片
-        index = (*data & 0xff) << 24 |  (*(data+1) & 0xff) << 16 |  (*(data+2) & 0xff) << 8 | (*(data+3) & 0xff);
-        if (index != expect_piece) {
-            printf("piece index don't match: %d %d\n", index, expect_piece);
-            return;
-        }
-        printf("got piece index: %d\n", index);
-        expect_piece++;
-        data += 4;
-        data_len -= 4;
-
-        
-        //写数据
-        if (ota_updater_eat_data(&apt, data, data_len) < 0) {
-            printf("ota_updater_eat_data() fail\n");
-            ota_updater_end(&apt, false);
-            expect_piece = 0;
-            recved_profile = 0;
-        }
-        
-    } else {
-        //bypass
-    }
+    // user logic here ...
 
 }
 
@@ -304,8 +187,36 @@ static int processSubAckFunction(QOS_VALUE* qosReturn, size_t qosCount, void *co
     return 0;
 }
 
+
+void ota_updater_cb(OtaUpdater* apt, OtaUpdaterCbSt st, void* userData)
+{
+    bool reboot = false;
+
+    switch (st) {
+    case OTA_UPDATER_CB_ERR:
+        printf("OTA_UPDATER_CB_ERR!\n");
+        break;
+	case OTA_UPDATER_CB_FW_ALREADY_NEW:
+        printf("OTA_UPDATER_CB_FW_ALREADY_NEW\n");
+        break;
+    case OTA_UPDATER_CB_CHECKSUM_ERR:
+        printf("OTA_UPDATER_CB_CHECKSUM_ERR\n");
+        break;
+	case OTA_UPDATER_FINISH:
+        printf("OTA_UPDATER_FINISH\n");
+        reboot = true;
+        break;
+    default:
+        break;
+    }
+
+    ota_updater_end(apt, reboot);
+    ota_updater_destroy(apt);
+}
+
 int iothub_mqtt_client_run(void)
 {
+    printf("APPLICATION VERSION: %s\n", CURRENT_VER);
     if (platform_init() != 0)
     {
         (void)printf("platform_init failed\r\n");
@@ -340,7 +251,6 @@ int iothub_mqtt_client_run(void)
         }
 
 
-
         IOTHUB_CLIENT_RETRY_POLICY retryPolicy = IOTHUB_CLIENT_RETRY_EXPONENTIAL_BACKOFF;
 
         size_t retryTimeoutLimitInSeconds = 1000;
@@ -356,9 +266,10 @@ int iothub_mqtt_client_run(void)
         if (clientHandle == NULL)
         {
             printf("Error: fail to initialize IOTHUB_MQTT_CLIENT_HANDLE");
-            return 0;
+            return __FAILURE__;
         }
 
+        printf("==> iothub_mqtt_doconnect\n");
         int result = iothub_mqtt_doconnect(clientHandle, 60);
 
         if (result == __FAILURE__)
@@ -367,36 +278,22 @@ int iothub_mqtt_client_run(void)
             return __FAILURE__;
         }
 
-        SUBSCRIBE_PAYLOAD subscribe[4];
+        printf("begin ota process\n");
+        //初始化  OtaUpdater
+        // OTA_BIN_DM_SHA256RSA      OTA_BIN_DM_MD5
+        if (!(apt = ota_updater_create(DEVICE, CURRENT_VER, OTA_BIN_DM_SHA256RSA, client_ota_cert, ota_updater_cb, clientHandle))) {
+            printf("ota_updater_create() fail\n");
+            return __FAILURE__;
+        }
+        
+        SUBSCRIBE_PAYLOAD subscribe[2];
         subscribe[0].subscribeTopic = TOPIC_NAME_A;
         subscribe[0].qosReturn = DELIVER_AT_MOST_ONCE;
         subscribe[1].subscribeTopic = TOPIC_NAME_B;
         subscribe[1].qosReturn = DELIVER_AT_MOST_ONCE;
-        subscribe[2].subscribeTopic = "ota_for_test_profile";
-        subscribe[2].qosReturn = DELIVER_AT_LEAST_ONCE; //至少一次
-        subscribe[3].subscribeTopic = "ota_for_test_bin";
-        subscribe[3].qosReturn = DELIVER_AT_LEAST_ONCE; //至少一次
-
+        
         int flag = 0;
         subscribe_mqtt_topics(clientHandle, subscribe, sizeof(subscribe)/sizeof(SUBSCRIBE_PAYLOAD), processSubAckFunction, &flag);
-
-        const char* publishData = "publish message to topic /china/sh.";
-
-        result = publish_mqtt_message(clientHandle, "/china/sh", DELIVER_EXACTLY_ONCE, (const uint8_t*)publishData,
-                             strlen(publishData), pub_least_ack_process , clientHandle);
-
-        if (result == __FAILURE__) {
-            printf("Does not support DELIVER_EXACTLY_ONCE\r\n");
-        }
-
-        result = publish_mqtt_message(clientHandle, "/china/bj", DELIVER_AT_MOST_ONCE, (const uint8_t*)publishData,
-                             strlen(publishData), pub_most_once_process , clientHandle);
-
-        result = publish_mqtt_message(clientHandle, "/china/bj", DELIVER_AT_MOST_ONCE, (const uint8_t*)publishData,
-                                      strlen(publishData), NULL , NULL);
-
-        result = publish_mqtt_message(clientHandle, "/china/sh", DELIVER_AT_LEAST_ONCE, (const uint8_t*)publishData,
-                                      strlen(publishData), pub_least_ack_process , clientHandle);
 
         TICK_COUNTER_HANDLE tickCounterHandle = tickcounter_create();
         tickcounter_ms_t currentTime, lastSendTime;
@@ -417,13 +314,6 @@ int iothub_mqtt_client_run(void)
                 subscribe_mqtt_topics(clientHandle, subscribe, sizeof(subscribe)/sizeof(SUBSCRIBE_PAYLOAD), NULL, NULL);
             }
 
-            // send a publish message every 5 seconds
-            if (!clientHandle->isConnectionLost && (currentTime - lastSendTime) / 1000 > 5)
-            {
-                result = publish_mqtt_message(clientHandle, "/china/sh", DELIVER_AT_LEAST_ONCE, (const uint8_t*)publishData,
-                                              strlen(publishData), pub_least_ack_process , clientHandle);
-                lastSendTime = currentTime;
-            }
             ThreadAPI_Sleep(10);
         } while (!clientHandle->isDestroyCalled && !clientHandle->isDisconnectCalled);
 

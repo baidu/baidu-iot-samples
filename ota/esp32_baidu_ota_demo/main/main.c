@@ -15,8 +15,10 @@
 
 
 
-#define EXAMPLE_WIFI_SSID CONFIG_WIFI_SSID
-#define EXAMPLE_WIFI_PASS CONFIG_WIFI_PASSWORD
+//#define EXAMPLE_WIFI_SSID "Tomato24"
+//#define EXAMPLE_WIFI_PASS "baiduhubiot"
+#define EXAMPLE_WIFI_SSID "Honor8"
+#define EXAMPLE_WIFI_PASS "243587123"
 
 /* FreeRTOS event group to signal when we are connected & ready to make a request */
 static EventGroupHandle_t wifi_event_group;
